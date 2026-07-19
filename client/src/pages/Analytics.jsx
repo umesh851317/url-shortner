@@ -1,313 +1,234 @@
-import React from "react";
+import React, { useState } from "react";
 import {
-       Search,
-       MousePointerClick,
-       CalendarDays,
-       Clock3,
-       Link2,
-       Copy,
-       Globe,
-       Monitor,
-       Smartphone,
-       Tablet,
+  Link2,
+  Copy,
+  MousePointerClick,
+  CalendarDays,
+  Clock3,
 } from "lucide-react";
 
+const urls = [
+  {
+    id: 1,
+    shortId: "F3k3xtwyZ",
+    redirectUrl: "https://chatgpt.com",
+    totalClicks: 24,
+    createdAt: "19 Jul 2026",
+    lastVisit: "2 min ago",
+  },
+  {
+    id: 1,
+    shortId: "F3k3xtwyZ",
+    redirectUrl: "https://chatgpt.com",
+    totalClicks: 24,
+    createdAt: "19 Jul 2026",
+    lastVisit: "2 min ago",
+  },
+  {
+    id: 2,
+    shortId: "Abx912Lm",
+    redirectUrl: "https://google.com",
+    totalClicks: 18,
+    createdAt: "18 Jul 2026",
+    lastVisit: "15 min ago",
+  },
+  {
+    id: 3,
+    shortId: "Mern2026",
+    redirectUrl: "https://github.com",
+    totalClicks: 140,
+    createdAt: "17 Jul 2026",
+    lastVisit: "1 hour ago",
+  },
+  {
+    id: 4,
+    shortId: "NodeJS99",
+    redirectUrl: "https://react.dev",
+    totalClicks: 57,
+    createdAt: "16 Jul 2026",
+    lastVisit: "Yesterday",
+  },
+];
+
 const Analytics = () => {
-       const stats = [
-              {
-                     title: "Total Clicks",
-                     value: "1,245",
-                     icon: <MousePointerClick className="text-cyan-400" size={22} />,
-              },
-              {
-                     title: "Today's Clicks",
-                     value: "28",
-                     icon: <MousePointerClick className="text-green-400" size={22} />,
-              },
-              {
-                     title: "Created",
-                     value: "18 Jul 2026",
-                     icon: <CalendarDays className="text-yellow-400" size={22} />,
-              },
-              {
-                     title: "Last Click",
-                     value: "2 min ago",
-                     icon: <Clock3 className="text-pink-400" size={22} />,
-              },
-       ];
-
-       const countries = [
-              { name: "India", clicks: 450 },
-              { name: "USA", clicks: 210 },
-              { name: "United Kingdom", clicks: 120 },
-              { name: "Canada", clicks: 90 },
-       ];
-
-       const visits = [
-              {
-                     ip: "192.xxx.xx.xx",
-                     country: "India",
-                     browser: "Chrome",
-                     time: "2 min ago",
-              },
-              {
-                     ip: "182.xxx.xx.xx",
-                     country: "USA",
-                     browser: "Firefox",
-                     time: "10 min ago",
-              },
-              {
-                     ip: "170.xxx.xx.xx",
-                     country: "UK",
-                     browser: "Edge",
-                     time: "25 min ago",
-              },
-              {
-                     ip: "154.xxx.xx.xx",
-                     country: "Canada",
-                     browser: "Safari",
-                     time: "1 hour ago",
-              },
-       ];
-
-       return (
-              <div className="min-h-screen bg-gray-950 text-white py-10">
-                     <div className="mx-auto max-w-7xl ">
-
-                            {/* Header */}
-                            <div className="mb-10">
-                                   <h1 className="text-4xl font-bold">Analytics Dashboard</h1>
-                                   <p className="mt-2 text-gray-400">
-                                          Track performance of your shortened URLs.
-                                   </p>
-                            </div>
-
-                            {/* Search */}
-                            <div className="mb-10 flex gap-4">
-                                   <div className="flex flex-1 items-center rounded-xl border border-gray-700 bg-gray-900 px-4">
-                                          <Search size={20} className="text-gray-400" />
-                                          <input
-                                                 type="text"
-                                                 placeholder="Search Short URL..."
-                                                 className="w-full bg-transparent px-3 py-4 outline-none"
-                                          />
-                                   </div>
-
-                                   <button className="rounded-xl bg-cyan-500 px-8 font-semibold hover:bg-cyan-600">
-                                          Search
-                                   </button>
-                            </div>
-
-                            {/* Stats */}
-                            <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
-
-                                   {stats.map((item) => (
-                                          <div
-                                                 key={item.title}
-                                                 className="rounded-2xl border border-gray-800 bg-gray-900 p-6"
-                                          >
-                                                 <div className="flex items-center justify-between">
-                                                        {item.icon}
-                                                        <span className="text-gray-500 text-sm">
-                                                               {item.title}
-                                                        </span>
-                                                 </div>
-
-                                                 <h2 className="mt-6 text-3xl font-bold">
-                                                        {item.value}
-                                                 </h2>
-                                          </div>
-                                   ))}
-                            </div>
-
-                            {/* URL Details */}
-
-                            <div className="mt-10 rounded-2xl border border-gray-800 bg-gray-900 p-6">
-
-                                   <h2 className="mb-6 flex items-center gap-2 text-2xl font-semibold">
-                                          <Link2 className="text-cyan-400" />
-                                          Link Details
-                                   </h2>
-
-                                   <div className="space-y-5">
-
-                                          <div>
-                                                 <p className="text-sm text-gray-500">
-                                                        Original URL
-                                                 </p>
-
-                                                 <p className="mt-1 break-all text-gray-300">
-                                                        https://www.google.com/search?q=react
-                                                 </p>
-                                          </div>
-
-                                          <div>
-                                                 <p className="text-sm text-gray-500">
-                                                        Short URL
-                                                 </p>
-
-                                                 <div className="mt-2 flex items-center justify-between rounded-xl border border-gray-700 bg-gray-950 px-5 py-4">
-
-                                                        <span className="text-cyan-400">
-                                                               https://short.ly/abc123
-                                                        </span>
-
-                                                        <button className="rounded-lg bg-cyan-500 p-3 hover:bg-cyan-600">
-                                                               <Copy size={18} />
-                                                        </button>
-
-                                                 </div>
-
-                                          </div>
-
-                                   </div>
-
-                            </div>
-
-                            {/* Chart + Countries */}
-
-                            <div className="mt-10 grid gap-6 lg:grid-cols-3">
-
-                                   {/* Chart */}
-
-                                   <div className="rounded-2xl border border-gray-800 bg-gray-900 p-6 lg:col-span-2">
-
-                                          <h2 className="mb-6 text-2xl font-semibold">
-                                                 Clicks Over Time
-                                          </h2>
-
-                                          <div className="flex h-72 items-center justify-center rounded-xl border border-dashed border-gray-700 text-gray-500">
-
-                                                 📈 Chart.js Graph Here
-
-                                          </div>
-
-                                   </div>
-
-                                   {/* Countries */}
-
-                                   <div className="rounded-2xl border border-gray-800 bg-gray-900 p-6">
-
-                                          <h2 className="mb-6 flex items-center gap-2 text-xl font-semibold">
-                                                 <Globe className="text-cyan-400" />
-                                                 Top Countries
-                                          </h2>
-
-                                          <div className="space-y-5">
-
-                                                 {countries.map((country) => (
-                                                        <div
-                                                               key={country.name}
-                                                               className="flex justify-between border-b border-gray-800 pb-3"
-                                                        >
-                                                               <span>{country.name}</span>
-
-                                                               <span className="font-semibold text-cyan-400">
-                                                                      {country.clicks}
-                                                               </span>
-                                                        </div>
-                                                 ))}
-
-                                          </div>
-
-                                   </div>
-
-                            </div>
-
-                            {/* Devices */}
-
-                            <div className="mt-10">
-
-                                   <h2 className="mb-6 text-2xl font-semibold">
-                                          Device Usage
-                                   </h2>
-
-                                   <div className="grid gap-6 md:grid-cols-3">
-
-                                          <div className="rounded-2xl border border-gray-800 bg-gray-900 p-6 text-center">
-                                                 <Monitor className="mx-auto text-cyan-400" size={40} />
-                                                 <h3 className="mt-4 text-xl font-semibold">
-                                                        Desktop
-                                                 </h3>
-                                                 <p className="mt-2 text-3xl font-bold">
-                                                        60%
-                                                 </p>
-                                          </div>
-
-                                          <div className="rounded-2xl border border-gray-800 bg-gray-900 p-6 text-center">
-                                                 <Smartphone className="mx-auto text-green-400" size={40} />
-                                                 <h3 className="mt-4 text-xl font-semibold">
-                                                        Mobile
-                                                 </h3>
-                                                 <p className="mt-2 text-3xl font-bold">
-                                                        35%
-                                                 </p>
-                                          </div>
-
-                                          <div className="rounded-2xl border border-gray-800 bg-gray-900 p-6 text-center">
-                                                 <Tablet className="mx-auto text-yellow-400" size={40} />
-                                                 <h3 className="mt-4 text-xl font-semibold">
-                                                        Tablet
-                                                 </h3>
-                                                 <p className="mt-2 text-3xl font-bold">
-                                                        5%
-                                                 </p>
-                                          </div>
-
-                                   </div>
-
-                            </div>
-
-                            {/* Recent Visits */}
-
-                            <div className="mt-10 rounded-2xl border border-gray-800 bg-gray-900 p-6">
-
-                                   <h2 className="mb-6 text-2xl font-semibold">
-                                          Recent Visits
-                                   </h2>
-
-                                   <div className="overflow-x-auto">
-
-                                          <table className="w-full">
-
-                                                 <thead>
-
-                                                        <tr className="border-b border-gray-800 text-left text-gray-400">
-
-                                                               <th className="py-4">IP Address</th>
-                                                               <th>Country</th>
-                                                               <th>Browser</th>
-                                                               <th>Time</th>
-
-                                                        </tr>
-
-                                                 </thead>
-
-                                                 <tbody>
-
-                                                        {visits.map((visit, index) => (
-                                                               <tr
-                                                                      key={index}
-                                                                      className="border-b border-gray-800 hover:bg-gray-800/40"
-                                                               >
-                                                                      <td className="py-4">{visit.ip}</td>
-                                                                      <td>{visit.country}</td>
-                                                                      <td>{visit.browser}</td>
-                                                                      <td>{visit.time}</td>
-                                                               </tr>
-                                                        ))}
-
-                                                 </tbody>
-
-                                          </table>
-
-                                   </div>
-
-                            </div>
-
-                     </div>
+  const [selectedUrl, setSelectedUrl] = useState(urls[0]);
+
+  const copyUrl = () => {
+    navigator.clipboard.writeText(
+      `http://localhost:8000/${selectedUrl.shortId}`
+    );
+  };
+
+  return (
+    <div className=" min-h-[91vh] bg-gray-950 text-white p-8">
+      <div className=" max-w-7xl mx-auto min-h-[91vh]    ">
+        {/* Heading */}
+        {/* <div className="mb-8">
+          <h1 className="text-4xl font-bold">URL Analytics</h1>
+          <p className="text-gray-400 mt-2">
+            Track and manage all your shortened URLs.
+          </p>
+        </div> */}
+
+        {/* Main Layout */}
+        <div className="grid lg:grid-cols-12 gap-6">
+          {/* Left Side */}
+          <div className="lg:col-span-4">
+            <div className="bg-gray-900 border border-gray-800 rounded-2xl p-5 h-[650px]">
+              <h2 className="text-xl font-semibold mb-5">History</h2>
+
+              <div className="space-y-4 overflow-y-auto h-[560px] pr-2 hide-scrollbar">
+                {urls.map((url) => (
+                  <div
+                    key={url.id}
+                    onClick={() => setSelectedUrl(url)}
+                    className={`cursor-pointer rounded-xl border p-4 transition-all duration-300 ${
+                      selectedUrl.id === url.id
+                        ? "border-cyan-500 bg-cyan-500/10"
+                        : "border-gray-800 bg-gray-950 hover:border-cyan-500 hover:bg-gray-900"
+                    }`}
+                  >
+                    <div className="flex items-center gap-2 text-cyan-400 font-semibold">
+                      <Link2 size={18} />
+                      {url.shortId}
+                    </div>
+
+                    <p className="text-gray-400 text-sm truncate mt-2">
+                      {url.redirectUrl}
+                    </p>
+
+                    <div className="flex justify-between items-center mt-4 text-sm">
+                      <span className="text-gray-500">
+                        {url.createdAt}
+                      </span>
+
+                      <span className="text-cyan-400 font-medium">
+                        {url.totalClicks} Clicks
+                      </span>
+                    </div>
+                  </div>
+                ))}
               </div>
-       );
+            </div>
+          </div>
+
+          {/* Right Side */}
+          <div className="lg:col-span-8">
+            <div className="bg-gray-900 border border-gray-800 rounded-2xl p-8 h-full">
+              {/* Short URL */}
+              <div className="mb-8">
+                <div className="flex items-center gap-2 text-gray-400 mb-2">
+                  <Link2 size={18} />
+                  Short URL
+                </div>
+
+                <div className="flex justify-between items-center bg-gray-950 border border-gray-800 rounded-xl p-4">
+                  <a
+                    href={`http://localhost:8000/${selectedUrl.shortId}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-cyan-400 font-medium hover:underline"
+                  >
+                    {`http://localhost:8000/${selectedUrl.shortId}`}
+                  </a>
+
+                  <button
+                    onClick={copyUrl}
+                    className="p-3 rounded-lg bg-cyan-500 hover:bg-cyan-600 transition"
+                  >
+                    <Copy size={18} />
+                  </button>
+                </div>
+              </div>
+
+              {/* Original URL */}
+              <div className="mb-10">
+                <div className="flex items-center gap-2 text-gray-400 mb-2">
+                  <Link2 size={18} />
+                  Original URL
+                </div>
+
+                <div className="bg-gray-950 border border-gray-800 rounded-xl p-4 break-all text-gray-300">
+                  {selectedUrl.redirectUrl}
+                </div>
+              </div>
+
+              {/* Stats */}
+              <div className="grid md:grid-cols-3 gap-5">
+                <div className="bg-gray-950 border border-gray-800 rounded-xl p-6 text-center">
+                  <MousePointerClick
+                    className="mx-auto text-cyan-400 mb-3"
+                    size={30}
+                  />
+
+                  <h2 className="text-3xl font-bold">
+                    {selectedUrl.totalClicks}
+                  </h2>
+
+                  <p className="text-gray-400 mt-2">
+                    Total Clicks
+                  </p>
+                </div>
+
+                <div className="bg-gray-950 border border-gray-800 rounded-xl p-6 text-center">
+                  <CalendarDays
+                    className="mx-auto text-yellow-400 mb-3"
+                    size={30}
+                  />
+
+                  <h2 className="text-lg font-semibold">
+                    {selectedUrl.createdAt}
+                  </h2>
+
+                  <p className="text-gray-400 mt-2">
+                    Created On
+                  </p>
+                </div>
+
+                <div className="bg-gray-950 border border-gray-800 rounded-xl p-6 text-center">
+                  <Clock3
+                    className="mx-auto text-green-400 mb-3"
+                    size={30}
+                  />
+
+                  <h2 className="text-lg font-semibold">
+                    {selectedUrl.lastVisit}
+                  </h2>
+
+                  <p className="text-gray-400 mt-2">
+                    Last Visit
+                  </p>
+                </div>
+              </div>
+
+              {/* Bottom */}
+              {/* <div className="mt-10 rounded-xl border border-gray-800 bg-gray-950 p-5">
+                <h3 className="text-lg font-semibold mb-2">
+                  Quick Summary
+                </h3>
+
+                <p className="text-gray-400 leading-7">
+                  This shortened URL has received{" "}
+                  <span className="text-cyan-400 font-semibold">
+                    {selectedUrl.totalClicks} clicks
+                  </span>
+                  . It was created on{" "}
+                  <span className="text-white">
+                    {selectedUrl.createdAt}
+                  </span>{" "}
+                  and the latest visit was{" "}
+                  <span className="text-green-400">
+                    {selectedUrl.lastVisit}
+                  </span>
+                  .
+                </p>
+              </div> */}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default Analytics;

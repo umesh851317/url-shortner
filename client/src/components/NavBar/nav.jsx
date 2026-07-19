@@ -7,31 +7,25 @@ const Nav = () => {
                      <div className="mx-auto flex h-full max-w-7xl items-center justify-between px-6">
 
                             {/* Logo */}
-                            <div className="text-2xl font-bold text-cyan-400">
+                            <Link to="/" className="text-2xl font-bold text-cyan-400">
                                    URL Shortener
-                            </div>
+                            </Link>
 
                             {/* Navigation Links */}
                             <div className="flex items-center gap-8 font-medium text-gray-300">
                                    <Link
-                                          to="/"
+                                          to="/create"
                                           className="transition-colors duration-200 hover:text-cyan-400"
                                    >
-                                          Home
+                                          Create
                                    </Link>
 
-                                   <Link
-                                          to="/redirect"
-                                          className="transition-colors duration-200 hover:text-cyan-400"
-                                   >
-                                          Redirect URLs
-                                   </Link>
 
                                    <Link
                                           to="/analytics"
                                           className="transition-colors duration-200 hover:text-cyan-400"
                                    >
-                                          Analytics
+                                          History
                                    </Link>
                             </div>
 

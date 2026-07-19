@@ -7,15 +7,31 @@ async function handleGeneratenewShortURl(req, res) {
        if (!body.url) {
               return res.status(400).json({ eroor: "Url is require" })
        }
+       // check first is short id is alredy exist for url
+       const isExist = await URL.findOne({
+              redirectUrl: body.url,
+       });
+
+       if (isExist) {
+              return res.json({
+                     duplicate: true,
+                     shortId: isExist.shortId,
+                     redirectUrl: isExist.redirectUrl,
+                     createdAt: isExist.createdAt,
+                     updatedAt: isExist.updatedAt,
+              });
+       }
+
+       // if new url create new shortId
        const shortId = shortid(8)
 
-       await URL.create({
+       let result = await URL.create({
               shortId: shortId,
               redirectUrl: body.url,
               visitHistory: []
        })
 
-       return res.json({ id: shortId })
+       return res.json(result)
 }
 
 async function handleGetAnalytics(req, res) {
