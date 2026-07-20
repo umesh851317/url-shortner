@@ -1,7 +1,8 @@
 const express = require("express")
 const cors = require("cors");
 const { connectMongoDb } = require("./config/db")
-const urlRoute = require("./routes/url")
+const urlRoute = require("./routes/urlRoutes")
+const history = require("./routes/historyRoute")
 const URL = require("./models/urls")
 
 const app = express()
@@ -16,7 +17,7 @@ connectMongoDb("mongodb://127.0.0.1:27017/url-shortner")
 
 
 app.use("/url", urlRoute)
-
+app.use("/history",history)
 app.get("/:shortId", async (req, res) => {
        const shortId = req.params.shortId;
        const entry = await URL.findOneAndUpdate({ shortId }, {

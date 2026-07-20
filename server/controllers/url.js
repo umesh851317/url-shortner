@@ -1,4 +1,3 @@
-const { shortId } = require("shortid")
 const URL = require("../models/urls")
 const shortid = require("shortid")
 
