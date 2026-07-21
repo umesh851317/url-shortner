@@ -10,16 +10,15 @@ const Create = () => {
 
        const handleGenrate = async (e) => {
               e.preventDefault();
-              console.log("original url is ", url);
               setLoader(true)
               try {
                      if (url == "") {
                             console.log("url can't be empty");
-
                      } else {
-                            var response = await axios.post("http://localhost:8000/url", {
-                                   url: url
-                            })
+                            const response = await axios.post(`${import.meta.env.VITE_API_URL}/url`, {
+                                   url
+                            });
+
                             setShortUrl(response.data)
                      }
                      console.log("short url is ", response);
@@ -94,11 +93,11 @@ const Create = () => {
                                                                </div>
                                                         </div>
                                                         <div className='w-full text-center mt-8' >
-                                                               <a href={`http://localhost:8000/${shortUrl.shortId}`}
+                                                               <a href={`${import.meta.env.VITE_API_URL}/${shortUrl.shortId}`}
                                                                       target="_blank"
                                                                       rel="noopener noreferrer"
                                                                       className="rounded-xl bg-cyan-500 px-8 py-3 font-medium  transition hover:bg-cyan-600">
-                                                                      redirect
+                                                                      Redirect
                                                                </a>
                                                         </div>
                                                  </div>

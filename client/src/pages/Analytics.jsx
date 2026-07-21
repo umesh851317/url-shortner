@@ -9,62 +9,15 @@ import {
 } from "lucide-react";
 import { useEffect } from "react";
 
-//   {
-//     id: 1,
-//     shortId: "F3k3xtwyZ",
-//     redirectUrl: "https://chatgpt.com",
-//     totalClicks: 24,
-//     createdAt: "19 Jul 2026",
-//     lastVisit: "2 min ago",
-//   },
-//   {
-//     id: 1,
-//     shortId: "F3k3xtwyZ",
-//     redirectUrl: "https://chatgpt.com",
-//     totalClicks: 24,
-//     createdAt: "19 Jul 2026",
-//     lastVisit: "2 min ago",
-//   },
-//   {
-//     id: 2,
-//     shortId: "Abx912Lm",
-//     redirectUrl: "https://google.com",
-//     totalClicks: 18,
-//     createdAt: "18 Jul 2026",
-//     lastVisit: "15 min ago",
-//   },
-//   {
-//     id: 3,
-//     shortId: "Mern2026",
-//     redirectUrl: "https://github.com",
-//     totalClicks: 140,
-//     createdAt: "17 Jul 2026",
-//     lastVisit: "1 hour ago",
-//   },
-//   {
-//     id: 4,
-//     shortId: "NodeJS99",
-//     redirectUrl: "https://react.dev",
-//     totalClicks: 57,
-//     createdAt: "16 Jul 2026",
-//     lastVisit: "Yesterday",
-//   },
-// ];
-
 const Analytics = () => {
   const [urls, setUrls] = useState([])
   const [selectedUrl, setSelectedUrl] = useState({});
 
-  const copyUrl = () => {
-    navigator.clipboard.writeText(
-      `http://localhost:8000/${selectedUrl.shortId}`
-    );
-  };
 
   useEffect(() => {
     const fetchUrls = async () => {
       try {
-        const response = await axios.get("http://localhost:8000/history")
+        const response = await axios.get(`${import.meta.env.VITE_API_URL}/history`)
         console.log("sjnc", response.data);
 
         setUrls(response.data)
@@ -136,11 +89,10 @@ const Analytics = () => {
                 <div className="flex justify-between items-center bg-gray-950 border border-gray-800 rounded-xl p-4">
                   <span className="text-cyan-400 font-medium"
                   >
-                    {`http://localhost:8000/${selectedUrl.shortid}`}
+                    {`${import.meta.env.VITE_API_URL}/${selectedUrl.shortid}`}
                   </span>
 
                   <button
-                    onClick={copyUrl}
                     className="p-3 rounded-lg bg-cyan-500 hover:bg-cyan-600 transition"
                   >
                     <Copy size={18} />
@@ -209,7 +161,7 @@ const Analytics = () => {
               </div>
 
               <div className='w-full text-center mt-10' >
-                <a href={`http://localhost:8000/${selectedUrl.shortid}`}
+                <a href={`${import.meta.env.VITE_API_URL}/${selectedUrl.shortid}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="rounded-xl bg-cyan-500 px-8 py-3 font-medium  transition hover:bg-cyan-600">
